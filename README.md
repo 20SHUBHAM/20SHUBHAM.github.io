@@ -55,7 +55,7 @@
    (CS231N)
 -  Natural Language Processing with Deep Learning(CS 224N)
 
-#### Technical Skills: Python, C++, SQL, Azure, MATLAB.
+#### Technical Skills: Python, C++, SQL
 #### ML libraries: TensorFlow, PyTorch, Keras, Scikit-Learn, XGBoost etc. 
 #### Data Analysis: Pandas, PySpark.
 #### Visualization: Matplotlib, Seaborn, Tableau, Plotly.
