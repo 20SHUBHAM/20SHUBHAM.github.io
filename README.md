@@ -62,7 +62,7 @@ Applied the Finite Difference method for accurate trajectory calculations and vi
 1. Teena Sharma, Abdellah Chehri, Deeksha Arya, Issouf Fofana, Shubham Jadhav, Siddhartha 
    Khare, Benoit Debaque, Nicolas Duclos, Kottakkarm Sooppy Nisar,, "Deep Learning-based Object 
    Detection and Classification for Autonomous Vehicles in Different Weather Scenarios of 
-   Quebec, Canada", in **IEEE, IEEE Access, 2024**
+   Quebec, Canada", in **IEEE, IEEE Access, 2024** (https://ieeexplore.ieee.org/document/10399478)
 
 - [Transformers 101: A Beginner’s Guide to Architecture,**@Medium**](https://medium.com/@Shubham_Jadhav)
 - [ Transformers 102: Coding Simple Transformer Model From Scratch(Pytorch),**@Medium**](https://medium.com/@Shubham_Jadhav)
