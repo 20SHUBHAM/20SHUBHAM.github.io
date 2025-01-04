@@ -59,7 +59,7 @@
 
 
 ## Publications
-1. Teena Sharma, Abdellah Chehri, Deeksha Arya, Issouf Fofana, Shubham Jadhav, Siddhartha 
+- Teena Sharma, Abdellah Chehri, Deeksha Arya, Issouf Fofana, Shubham Jadhav, Siddhartha 
    Khare, Benoit Debaque, Nicolas Duclos, Kottakkarm Sooppy Nisar,, "Deep Learning-based Object 
    Detection and Classification for Autonomous Vehicles in Different Weather Scenarios of 
    Quebec, Canada", in **IEEE, IEEE Access, 2024** (https://ieeexplore.ieee.org/document/10399478)
