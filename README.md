@@ -40,15 +40,15 @@
 ### Traffic Prediction Using Graph Neural Networks
 [Github](https://github.com/20SHUBHAM/Traffic_Prediction_Using_GNN-Graph_Neural_Networks-)
 
-Developed a traffic prediction model using Attention Temporal Graph Convolutional Network ( A3TGCN ) ,Validated on PeMSD4 dataset(metropolitan areas in California with 39,000+ detectors, using 10,181 training examples over 35 days).
+- Developed a traffic prediction model using Attention Temporal Graph Convolutional Network ( A3TGCN ) ,Validated on PeMSD4 dataset(metropolitan areas in California with 39,000+ detectors, using 10,181 training examples over 35 days).
 
 ### CRISPRLY - AI/ML 
-Collaborated with a team of 21 on the CRISPRLY project as a Dry Lab researcher, using DeepCpf1 to predict Indel frequencies in a 34-nucleotide DNA sequence. Analyzed 20,826 sequences, improving gene editing outcomes by 15%
+- Collaborated with a team of 21 on the CRISPRLY project as a Dry Lab researcher, using DeepCpf1 to predict Indel frequencies in a 34-nucleotide DNA sequence. Analyzed 20,826 sequences, improving gene editing outcomes by 15%
 
 ### Tracing the path of satellite in stable orbit by simulating in Python
-[Github](https://github.com/20SHUBHAM/Tracing_orbit)
-Conducted research on planetary motion and numerical methods. 
-Applied the Finite Difference method for accurate trajectory calculations and visualization using Python.
+  [Github](https://github.com/20SHUBHAM/Tracing_orbit)
+- Conducted research on planetary motion and numerical methods. 
+  Applied the Finite Difference method for accurate trajectory calculations and visualization using Python.
 
 ##  Additional Courses
 -  Machine Learning (CS 229)
