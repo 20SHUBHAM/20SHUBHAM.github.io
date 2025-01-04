@@ -1,9 +1,8 @@
-# Data Scientist
+# Data Science(AI/ML)| Generative AI | Quantitative Finance 
 
-#### Technical Skills: Python, C++, SQL, AWS, , MATLAB
 
 ## Education
-- Integrated M.Tech.(Duel Degree) |  Indian Institute of Technology, Roorkee - IIT ROORKEE(2020-2025)						       		
+- Integrated M.Tech.(Duel Degree) |  Indian Institute of Technology, Roorkee - IIT ROORKEE (2020-2025)						       		
   
 
 ## Work Experience
@@ -56,6 +55,12 @@
    (CS231N)
 -  Natural Language Processing with Deep Learning(CS 224N)
 
+#### Technical Skills: Python, C++, SQL, Azure, MATLAB.
+#### ML libraries: TensorFlow, PyTorch, Keras, Scikit-Learn, XGBoost etc. 
+#### Data Analysis: Pandas, PySpark.
+#### Visualization: Matplotlib, Seaborn, Tableau, Plotly.
+#### NLP: NLTK, spaCy
+#### Web: Flask, Git
 
 
 ## Publications
