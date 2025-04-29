@@ -1,4 +1,4 @@
-# Data Science(AI/ML)| Generative AI | Quantitative Finance 
+# Data Science(AI/ML) | Quantitative Finance | Generative AI 
 
 
 ## Education
