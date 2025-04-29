@@ -14,9 +14,10 @@
   Prompt Engineering.
 
 **Data Science Internship(Finance) @ Innovation Hacks AI  (_June 2022 - August 2022_)**
-- Developed "Market-Watcher" AI software for a startup, predicting global market trends with 
-  over 70% accuracy.
-- Reduced investment risks by more than 12%, attempted to file a US patent.
+- Built "Market-Watcher" AI prediction system achieving 73% DA and 1.8 Sharpe ratio.                
+
+- Reduced portfolio volatility by 12% through statistical arbitrage models and VaR optimization.           
+  attempted to file a US patent.
   Tech stack: Microsoft Azure, Git, Kite Connect API, Knowledge Graphs (GNNs), Transformers , 
   NLP( NLTK).
 
