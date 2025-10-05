@@ -1,4 +1,4 @@
-# Data Science(AI/ML) | Quantitative Finance | Generative AI 
+# Quantitative Finance|Risk Analysis|Data Science(AI/ML) 
 
 
 ## Education
@@ -6,6 +6,13 @@
   
 
 ## Work Experience
+**Data Science Internship(Finance) @ Innovation Hacks AI  (_June 2022 - August 2022_)**
+- Built "Market-Watcher" AI prediction system achieving 73% DA and 1.8 Sharpe ratio.                
+- Reduced portfolio volatility by 12% through statistical arbitrage models and VaR optimization.           
+  attempted to file a US patent.
+  Tech stack: Microsoft Azure, Git, Kite Connect API, Knowledge Graphs (GNNs), Transformers , 
+  NLP( NLTK).
+  
 **Data Science Internship  @ SG Analytics  (_May 2024 - July 2024_)**
 - Engineered a Generative AI based chatbot for leading global ESG firm ,Built a unified 
   indexing system for querying terabytes of data(structured,unstructured,3D etc.), enhanced 
@@ -13,12 +20,7 @@
 - Tech stack: Gen AI, LLM, LangChain , Microsoft Copilot Studio, Azure Ai Studio, Graph RAG, 
   Prompt Engineering.
 
-**Data Science Internship(Finance) @ Innovation Hacks AI  (_June 2022 - August 2022_)**
-- Built "Market-Watcher" AI prediction system achieving 73% DA and 1.8 Sharpe ratio.                
-- Reduced portfolio volatility by 12% through statistical arbitrage models and VaR optimization.           
-  attempted to file a US patent.
-  Tech stack: Microsoft Azure, Git, Kite Connect API, Knowledge Graphs (GNNs), Transformers , 
-  NLP( NLTK).
+
 
 **Artificial Intelligence (AI) Research Internship @ Prof. Siddhartha Khare (Civil Engineering Department IIT ROORKEE)   (_May 2022 - Nov 2022_)**
 - Engineered end-to-end AI software for autonomous driving cars , achieving 73.26% Precision, 
