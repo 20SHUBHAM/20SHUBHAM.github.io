@@ -37,7 +37,7 @@
 - Tech Stack: Python, OpenCV, TensorFlow, PyTorch, GIS data.
 
 
-## Projects
+## Projects( BEFORE CHATGPT)
 ### Traffic Prediction Using Graph Neural Networks
 [Github](https://github.com/20SHUBHAM/Traffic_Prediction_Using_GNN-Graph_Neural_Networks-)
 
