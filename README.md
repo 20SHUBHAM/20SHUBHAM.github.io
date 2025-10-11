@@ -1,4 +1,4 @@
-# Quantitative Finance|Risk Analysis|Data Science(AI/ML) 
+#  Data Science | Generative AI-Agentic Systems | NLP
 
 
 ## Education
