@@ -7,7 +7,7 @@
 
 ## Work Experience
 
-**Data Scientist (AI/ML) | SG Analytics   (_May 2022 - Present)**
+**Data Scientist (AI/ML) @ SG Analytics  (_May 2025 - Present_)**
 - Drive advanced data science projects on cutting edege AI/ML technology reporting to the VP - Data Analytics.
 - Lead client engagements, delivering predictive analytics, real-time data solutions in a dynamic environment.
 
