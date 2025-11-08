@@ -6,6 +6,13 @@
   
 
 ## Work Experience
+
+** Data Scientist (AI/ML) | SG Analytics   (_May 2022 - Present)**
+- Drive advanced data science projects on cutting edege AI/ML technology reporting to the VP - Data Analytics.
+- Lead client engagements, delivering predictive analytics, real-time data solutions in a dynamic environment.
+
+## Internships
+
 **Data Science Internship(Finance) @ Innovation Hacks AI  (_June 2022 - August 2022_)**
 - Built "Market-Watcher" AI prediction system achieving 73% DA and 1.8 Sharpe ratio.                
 - Reduced portfolio volatility by 12% through statistical arbitrage models and VaR optimization.           
