@@ -1,4 +1,4 @@
-#  Data Science | Generative AI-Agentic Systems | NLP
+#  Data Science | Quant Finance | Generative AI-Agentic Systems 
 
 
 ## Education
