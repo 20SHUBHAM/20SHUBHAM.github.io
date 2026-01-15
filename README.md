@@ -45,6 +45,20 @@
 
 
 ## Projects( BEFORE CHATGPT)
+
+### High-Frequency Trading Alpha Research Platform
+- Built production-grade C++ orderbook (500K+ ops/sec) with O(1) operations and Python bindings via pybind11
+- Developed ML-based prediction system using CNN+LSTM architecture achieving 53% tick direction accuracy
+- Implemented realistic backtesting with transaction costs, latency, and market impact modeling (Sharpe: 2.1)
+
+### BlackScholes Model Validator & Options Strategy Risk Dashboard 
+[Github](https://github.com/20SHUBHAM/Black-Scholes-Options-Pricing)
+
+- Built a Python BlackScholes validator on real options-chain data : IV solver, Greeks, mispricing metrics (MAE/
+RMSE), vol smile, putcall parity checks.
+- Added strategy + risk analytics : multi-leg P&L/Greeks aggregation, Monte Carlo (10k+) VaR/CVaR, stress tests.
+- Tech Stack: Python, NumPy, SciPy, Pandas, yfinance, Plotly, Streamlit, pytest
+
 ### Traffic Prediction Using Graph Neural Networks
 [Github](https://github.com/20SHUBHAM/Traffic_Prediction_Using_GNN-Graph_Neural_Networks-)
 
