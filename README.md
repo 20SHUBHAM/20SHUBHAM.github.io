@@ -7,7 +7,7 @@
 
 ## Work Experience
 
-**Data Science(AI/ML) - Management Trainee @ SG Analytics  (May 2025 - Present_)**
+**Data Science(AI/ML) @Straive SG Analytics  (May 2025 - Present_)**
 - Drive advanced data science projects on cutting edege AI/ML technology reporting to the VP - Data Analytics.
 - Lead client engagements, delivering predictive analytics, real-time data solutions in a dynamic environment.
 
