@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shubham Jadhav — Quant & AI Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --off-white: #f0ede6;
+    --cream: #e8e4db;
+    --gold: #c9a227;
+    --gold-dim: #8a6d17;
+    --teal: #0d9e75;
+    --teal-dark: #086e52;
+    --slate: #1a1a2e;
+    --muted: #6b6860;
+    --border: rgba(201,162,39,0.2);
+    --font-display: 'Playfair Display', serif;
+    --font-sans: 'Space Grotesk', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    background: var(--black);
+    color: var(--off-white);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── CURSOR ─── */
+  .cursor {
+    position: fixed; width: 10px; height: 10px;
+    background: var(--gold); border-radius: 50%;
+    pointer-events: none; z-index: 9999;
+    transition: transform 0.15s ease, opacity 0.2s;
+    transform: translate(-50%, -50%);
+  }
+  .cursor-ring {
+    position: fixed; width: 36px; height: 36px;
+    border: 1px solid rgba(201,162,39,0.5); border-radius: 50%;
+    pointer-events: none; z-index: 9998;
+    transition: transform 0.35s ease, width 0.3s, height 0.3s, opacity 0.3s;
+    transform: translate(-50%, -50%);
+  }
+  body.hovering .cursor { transform: translate(-50%,-50%) scale(2); background: var(--teal); }
+  body.hovering .cursor-ring { width: 56px; height: 56px; border-color: rgba(13,158,117,0.4); }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    transition: padding 0.3s;
+  }
+  nav.scrolled { padding: 0.8rem 4rem; }
+  .nav-logo {
+    font-family: var(--font-mono); font-size: 0.85rem;
+    color: var(--gold); letter-spacing: 0.08em;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -3px; left: 0;
+    width: 0; height: 1px; background: var(--gold);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh; display: flex; flex-direction: column;
+    justify-content: center; padding: 8rem 4rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(201,162,39,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,162,39,0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 40%, transparent 100%);
+  }
+  .hero-badge {
+    font-family: var(--font-mono); font-size: 0.75rem;
+    color: var(--teal); letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-badge::before {
+    content: ''; display: block; width: 32px; height: 1px; background: var(--teal);
+  }
+  .hero-name {
+    font-family: var(--font-display); font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: 1.0; font-weight: 700;
+    background: linear-gradient(135deg, var(--off-white) 0%, var(--gold) 60%, var(--teal) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+  }
+  .hero-title {
+    font-family: var(--font-display); font-style: italic; font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    color: var(--muted); margin-bottom: 2rem;
+  }
+  .hero-desc {
+    max-width: 580px; font-size: 1.05rem; color: rgba(240,237,230,0.75);
+    line-height: 1.8; margin-bottom: 3rem;
+  }
+  .hero-desc strong { color: var(--gold); font-weight: 500; }
+  .hero-actions { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+  .btn-primary {
+    padding: 0.85rem 2.2rem; background: var(--gold);
+    color: var(--black); font-family: var(--font-sans);
+    font-size: 0.85rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; text-decoration: none;
+    border: none; cursor: pointer; transition: all 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .btn-primary::before {
+    content: ''; position: absolute; inset: 0;
+    background: var(--teal); transform: translateX(-100%);
+    transition: transform 0.3s;
+  }
+  .btn-primary:hover::before { transform: translateX(0); }
+  .btn-primary span { position: relative; z-index: 1; }
+  .btn-primary:hover { color: var(--off-white); }
+  .btn-outline {
+    padding: 0.85rem 2.2rem; background: transparent;
+    color: var(--off-white); font-family: var(--font-sans);
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; text-decoration: none;
+    border: 1px solid rgba(240,237,230,0.25); cursor: pointer;
+    transition: all 0.3s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-stats {
+    position: absolute; right: 4rem; bottom: 4rem;
+    display: flex; flex-direction: column; gap: 2rem; align-items: flex-end;
+  }
+  .stat-item { text-align: right; }
+  .stat-num {
+    font-family: var(--font-mono); font-size: 2.2rem; font-weight: 500;
+    color: var(--gold); line-height: 1; display: block;
+  }
+  .stat-label {
+    font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    color: var(--muted); font-size: 0.7rem; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none;
+    animation: bounce 2s ease-in-out infinite;
+  }
+  .hero-scroll svg { opacity: 0.5; }
+  @keyframes bounce {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ─── SECTION BASE ─── */
+  section { padding: 7rem 4rem; }
+  .section-label {
+    font-family: var(--font-mono); font-size: 0.72rem;
+    color: var(--teal); letter-spacing: 0.2em; text-transform: uppercase;
+    margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-label::before {
+    content: ''; display: inline-block; width: 24px; height: 1px; background: var(--teal);
+  }
+  .section-title {
+    font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 700; line-height: 1.15; margin-bottom: 1rem;
+  }
+
+  /* ─── ABOUT ─── */
+  #about { background: var(--slate); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    align-items: start; margin-top: 3.5rem;
+  }
+  .about-text p {
+    color: rgba(240,237,230,0.75); font-size: 1rem; line-height: 1.9;
+    margin-bottom: 1.5rem;
+  }
+  .about-text p strong { color: var(--gold); font-weight: 500; }
+  .skills-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
+  }
+  .skill-chip {
+    padding: 0.7rem 1rem;
+    background: rgba(201,162,39,0.07);
+    border: 1px solid rgba(201,162,39,0.15);
+    font-family: var(--font-mono); font-size: 0.78rem;
+    color: var(--cream); letter-spacing: 0.04em;
+    transition: all 0.3s;
+  }
+  .skill-chip:hover {
+    background: rgba(201,162,39,0.15);
+    border-color: var(--gold);
+    color: var(--gold);
+    transform: translateY(-2px);
+  }
+  .about-right { display: flex; flex-direction: column; gap: 2rem; }
+  .edu-card {
+    padding: 1.5rem; border-left: 2px solid var(--gold);
+    background: rgba(201,162,39,0.04);
+    transition: background 0.3s;
+  }
+  .edu-card:hover { background: rgba(201,162,39,0.08); }
+  .edu-degree { font-size: 0.95rem; font-weight: 600; color: var(--off-white); }
+  .edu-inst { font-size: 0.85rem; color: var(--gold); margin: 0.2rem 0; }
+  .edu-meta { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); }
+  .edu-score { font-family: var(--font-mono); font-size: 1.2rem; font-weight: 500; color: var(--teal); }
+
+  /* ─── EXPERIENCE ─── */
+  #experience { background: var(--black); }
+  .timeline { margin-top: 3.5rem; position: relative; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 1px; background: linear-gradient(to bottom, var(--gold), var(--teal), transparent);
+  }
+  .timeline-item {
+    padding-left: 2.5rem; padding-bottom: 3.5rem; position: relative;
+  }
+  .timeline-item::before {
+    content: ''; position: absolute; left: -5px; top: 6px;
+    width: 11px; height: 11px; border-radius: 50%;
+    background: var(--gold); border: 2px solid var(--black);
+    box-shadow: 0 0 12px rgba(201,162,39,0.5);
+  }
+  .timeline-meta {
+    font-family: var(--font-mono); font-size: 0.72rem;
+    color: var(--muted); letter-spacing: 0.08em; margin-bottom: 0.5rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .timeline-meta .tag {
+    background: rgba(13,158,117,0.12); color: var(--teal);
+    border: 1px solid rgba(13,158,117,0.25);
+    padding: 0.15rem 0.6rem; font-size: 0.65rem; letter-spacing: 0.08em;
+  }
+  .timeline-title { font-size: 1.15rem; font-weight: 600; color: var(--off-white); margin-bottom: 0.25rem; }
+  .timeline-org { font-size: 0.88rem; color: var(--gold); margin-bottom: 1rem; }
+  .timeline-points { list-style: none; }
+  .timeline-points li {
+    font-size: 0.9rem; color: rgba(240,237,230,0.7); line-height: 1.7;
+    padding-left: 1.25rem; position: relative; margin-bottom: 0.4rem;
+  }
+  .timeline-points li::before {
+    content: '→'; position: absolute; left: 0;
+    color: var(--teal); font-size: 0.8rem;
+  }
+  .timeline-tech {
+    margin-top: 0.85rem; display: flex; flex-wrap: wrap; gap: 0.5rem;
+  }
+  .tech-pill {
+    font-family: var(--font-mono); font-size: 0.68rem;
+    padding: 0.2rem 0.7rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--muted); letter-spacing: 0.05em;
+  }
+
+  /* ─── PROJECTS ─── */
+  #projects { background: #0d0d1a; }
+  .projects-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.5rem; margin-top: 3.5rem;
+  }
+  .project-card {
+    padding: 2rem; border: 1px solid rgba(255,255,255,0.07);
+    background: rgba(255,255,255,0.02);
+    transition: all 0.4s; position: relative; overflow: hidden;
+    cursor: pointer; text-decoration: none; display: block; color: inherit;
+  }
+  .project-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(201,162,39,0.06), rgba(13,158,117,0.04));
+    opacity: 0; transition: opacity 0.4s;
+  }
+  .project-card:hover { border-color: rgba(201,162,39,0.3); transform: translateY(-4px); }
+  .project-card:hover::before { opacity: 1; }
+  .project-num {
+    font-family: var(--font-mono); font-size: 0.65rem; color: var(--gold);
+    letter-spacing: 0.15em; margin-bottom: 1.25rem; opacity: 0.6;
+  }
+  .project-title { font-size: 1.1rem; font-weight: 600; color: var(--off-white); margin-bottom: 0.75rem; line-height: 1.3; }
+  .project-desc { font-size: 0.88rem; color: rgba(240,237,230,0.6); line-height: 1.75; margin-bottom: 1.25rem; }
+  .project-highlight {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-family: var(--font-mono); font-size: 0.72rem;
+    color: var(--teal); margin-bottom: 1.25rem;
+  }
+  .project-highlight::before { content: '◆'; font-size: 0.5rem; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .project-tag {
+    font-family: var(--font-mono); font-size: 0.65rem;
+    padding: 0.2rem 0.6rem;
+    background: rgba(201,162,39,0.08);
+    border: 1px solid rgba(201,162,39,0.15);
+    color: rgba(201,162,39,0.8); letter-spacing: 0.04em;
+  }
+  .project-card-featured {
+    grid-column: span 2;
+    border-color: rgba(201,162,39,0.15);
+    background: rgba(201,162,39,0.03);
+  }
+  .featured-badge {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    font-family: var(--font-mono); font-size: 0.62rem;
+    padding: 0.2rem 0.6rem;
+    background: rgba(201,162,39,0.15); border: 1px solid rgba(201,162,39,0.3);
+    color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase;
+  }
+
+  /* ─── ACHIEVEMENTS ─── */
+  #achievements { background: var(--black); }
+  .achievements-row {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-top: 3.5rem;
+  }
+  .achv-card {
+    padding: 2rem; border: 1px solid rgba(255,255,255,0.07);
+    text-align: center; transition: all 0.3s; position: relative;
+  }
+  .achv-card:hover { border-color: var(--gold); background: rgba(201,162,39,0.04); }
+  .achv-icon { font-size: 2.2rem; margin-bottom: 1rem; display: block; }
+  .achv-title { font-size: 1rem; font-weight: 600; color: var(--off-white); margin-bottom: 0.4rem; }
+  .achv-sub { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+  /* ─── PUBLICATION ─── */
+  #publication { background: var(--slate); }
+  .pub-card {
+    margin-top: 3.5rem; padding: 2.5rem;
+    border: 1px solid rgba(201,162,39,0.2);
+    background: rgba(201,162,39,0.04);
+    display: flex; gap: 2rem; align-items: flex-start;
+  }
+  .pub-icon { font-size: 2.5rem; flex-shrink: 0; margin-top: 0.2rem; }
+  .pub-label {
+    font-family: var(--font-mono); font-size: 0.65rem;
+    color: var(--teal); letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+  .pub-title { font-size: 1.1rem; font-weight: 600; line-height: 1.5; margin-bottom: 0.75rem; }
+  .pub-authors { font-size: 0.83rem; color: var(--muted); line-height: 1.7; margin-bottom: 0.75rem; }
+  .pub-authors strong { color: var(--gold); }
+  .pub-journal { font-family: var(--font-mono); font-size: 0.78rem; color: var(--teal); }
+  .pub-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    margin-top: 1rem; font-size: 0.8rem; font-weight: 500;
+    color: var(--gold); text-decoration: none; letter-spacing: 0.06em;
+    transition: gap 0.2s;
+  }
+  .pub-link:hover { gap: 0.7rem; }
+
+  /* ─── CONTACT ─── */
+  #contact { background: var(--black); text-align: center; }
+  .contact-inner { max-width: 640px; margin: 0 auto; }
+  .contact-inner .section-label { justify-content: center; }
+  .contact-inner .section-label::before { display: none; }
+  .contact-headline {
+    font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700; margin-bottom: 1rem;
+  }
+  .contact-sub {
+    font-size: 1rem; color: rgba(240,237,230,0.6); line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+  .contact-links {
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem;
+    margin-bottom: 3rem;
+  }
+  .contact-link {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--off-white); text-decoration: none; font-size: 0.85rem;
+    font-family: var(--font-mono); letter-spacing: 0.04em;
+    transition: all 0.3s;
+  }
+  .contact-link:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,162,39,0.05); }
+  .contact-email {
+    font-family: var(--font-mono); font-size: 0.95rem; color: var(--gold);
+    letter-spacing: 0.06em;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    padding: 2rem 4rem; border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted);
+  }
+  footer a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  footer a:hover { color: var(--gold); }
+
+  /* ─── SCROLL FADE-IN ─── */
+  .fade-in {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 2rem; }
+    section { padding: 5rem 2rem; }
+    #hero { padding: 7rem 2rem 3rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-stats { display: none; }
+    .achievements-row { grid-template-columns: 1fr; }
+    .project-card-featured { grid-column: span 1; }
+    .pub-card { flex-direction: column; gap: 1rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Navigation -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">SJ // 20410013</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#publication">Research</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-badge">IIT Roorkee '25 — Quant & AI Engineer</div>
+  <h1 class="hero-name">Shubham<br>Jadhav</h1>
+  <p class="hero-title">Building at the intersection of <em>markets</em> and <em>intelligence</em></p>
+  <p class="hero-desc">
+    Data Scientist at <strong>Straive (SG Analytics)</strong>, IIT Roorkee M.Tech graduate.
+    I build systems that learn from noise — whether that's alpha signals in order flow,
+    autonomous perception in adverse weather, or enterprise-scale GenAI pipelines.
+    <strong>IEEE published</strong> · <strong>iGEM Gold Medalist</strong> · <strong>Quant research since 2022</strong>.
+  </p>
+  <div class="hero-actions">
+    <a href="https://20shubham.github.io/" target="_blank" class="btn-primary"><span>View Portfolio →</span></a>
+    <a href="#contact" class="btn-outline">Get in touch</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <span class="stat-num">2.1</span>
+      <span class="stat-label">Sharpe Ratio</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">500K+</span>
+      <span class="stat-label">Orderbook ops/sec</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">73%</span>
+      <span class="stat-label">mAP — IEEE Paper</span>
+    </div>
+  </div>
+  <a href="#about" class="hero-scroll">
+    <svg width="18" height="24" viewBox="0 0 18 24" fill="none"><rect x="1" y="1" width="16" height="22" rx="8" stroke="currentColor" stroke-width="1.5"/><circle cx="9" cy="7" r="2" fill="currentColor"/></svg>
+    Scroll
+  </a>
+</section>
+
+<!-- ═══════════════════════════ ABOUT ═══════════════════════════ -->
+<section id="about">
+  <div class="section-label fade-in">Background</div>
+  <h2 class="section-title fade-in">Who I am</h2>
+  <div class="about-grid">
+    <div class="about-text fade-in">
+      <p>
+        I'm a <strong>quantitative engineer and AI researcher</strong> who graduated from IIT Roorkee with an
+        Integrated M.Tech in 2025. Currently, I work as a Data Scientist at Straive, applying
+        cutting-edge ML to enterprise problems — reporting directly to the VP of Data Analytics.
+      </p>
+      <p>
+        My work straddles two worlds: <strong>systematic trading</strong> — building production-grade C++ orderbooks,
+        designing alpha signals from market microstructure, and validating options pricing models —
+        and <strong>deep AI research</strong>, from autonomous driving perception under harsh weather to LLM-powered
+        enterprise workflows.
+      </p>
+      <p>
+        Outside code, I competed in High Jump at Inter-IIT Sports Meet, won a Gold Medal
+        at <strong>iGEM Paris 2022</strong> (world's largest synthetic biology competition), and reached
+        the pre-finals of the International Youth Math Challenge among 12,500+ competitors from 98 countries.
+      </p>
+      <div class="skills-grid" style="margin-top:2rem">
+        <div class="skill-chip">Python · C++ · SQL</div>
+        <div class="skill-chip">PyTorch · TensorFlow</div>
+        <div class="skill-chip">Stochastic Calculus</div>
+        <div class="skill-chip">Time Series · Quant</div>
+        <div class="skill-chip">LangChain · LLMs</div>
+        <div class="skill-chip">GNN · Transformers</div>
+        <div class="skill-chip">Options · Greeks · VaR</div>
+        <div class="skill-chip">PySpark · Azure</div>
+      </div>
+    </div>
+    <div class="about-right fade-in">
+      <div class="edu-card">
+        <div class="edu-degree">Integrated M.Tech (Dual Degree)</div>
+        <div class="edu-inst">Indian Institute of Technology, Roorkee</div>
+        <div class="edu-meta">2020 – 2025 · Earth Sciences & Engineering</div>
+        <div class="edu-score">7.70 CGPA</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">Class XII — Intermediate</div>
+        <div class="edu-inst">Chaitanya's International School, Baramati</div>
+        <div class="edu-meta">2020</div>
+        <div class="edu-score">82.00%</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">Class X — Matriculate</div>
+        <div class="edu-inst">New English School Khalatewasti</div>
+        <div class="edu-meta">2018</div>
+        <div class="edu-score">95.80%</div>
+      </div>
+      <div style="padding:1.5rem; border:1px solid rgba(13,158,117,0.2); background:rgba(13,158,117,0.04)">
+        <div style="font-size:0.72rem;font-family:var(--font-mono);color:var(--teal);letter-spacing:0.12em;margin-bottom:0.75rem;">ADDITIONAL COURSES</div>
+        <p style="font-size:0.85rem;color:rgba(240,237,230,0.7);line-height:1.7">
+          Probability & Stochastics for Finance — IIT Kanpur<br>
+          Topics in Mathematics with Applications in Finance — MIT<br>
+          ML (CS 229) · CNN/Vision (CS231N) · NLP (CS 224N) — Stanford
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ EXPERIENCE ═══════════════════════════ -->
+<section id="experience">
+  <div class="section-label fade-in">Career</div>
+  <h2 class="section-title fade-in">Experience</h2>
+  <div class="timeline">
+
+    <div class="timeline-item fade-in">
+      <div class="timeline-meta">
+        <span>May 2025 – Present</span>
+        <span class="tag">Full-time</span>
+      </div>
+      <div class="timeline-title">Data Scientist (AI/ML)</div>
+      <div class="timeline-org">Straive · SG Analytics — Pune, India</div>
+      <ul class="timeline-points">
+        <li>Driving advanced AI projects across cutting-edge technologies, reporting to the VP – Data Analytics</li>
+        <li>Building and deploying AI/ML systems for enterprise clients including predictive analytics, GenAI workflows, and large-scale inference pipelines</li>
+        <li>Developing statistical and ML models on large-scale structured datasets; end-to-end model validation, performance metrics, and robustness testing</li>
+      </ul>
+      <div class="timeline-tech">
+        <span class="tech-pill">PyTorch</span><span class="tech-pill">GenAI</span><span class="tech-pill">Predictive Analytics</span><span class="tech-pill">Inference Pipelines</span>
+      </div>
+    </div>
+
+    <div class="timeline-item fade-in">
+      <div class="timeline-meta">
+        <span>May 2024 – Jul 2024</span>
+        <span class="tag">Internship</span>
+      </div>
+      <div class="timeline-title">Data Science Intern</div>
+      <div class="timeline-org">SG Analytics — Bengaluru, India</div>
+      <ul class="timeline-points">
+        <li>Engineered a GenAI chatbot integrated with Microsoft Teams for a leading global ESG firm</li>
+        <li>Built a unified indexing system for querying terabytes of data (structured, unstructured, 3D) — enhanced accessibility by 72–75% and reduced response time by 44–50%</li>
+      </ul>
+      <div class="timeline-tech">
+        <span class="tech-pill">LangChain</span><span class="tech-pill">LLMs</span><span class="tech-pill">FastAPI</span><span class="tech-pill">Docker</span><span class="tech-pill">CI/CD</span><span class="tech-pill">Prompt Engineering</span>
+      </div>
+    </div>
+
+    <div class="timeline-item fade-in">
+      <div class="timeline-meta">
+        <span>Jun 2022 – Aug 2022</span>
+        <span class="tag">Finance Internship</span>
+      </div>
+      <div class="timeline-title">Finance Data Science Intern</div>
+      <div class="timeline-org">Innovation Hacks AI — Pune, India</div>
+      <ul class="timeline-points">
+        <li>Built "Market-Watcher" AI prediction system achieving 73% directional accuracy and 1.8 Sharpe ratio</li>
+        <li>Reduced portfolio volatility by 12% through statistical arbitrage models and VaR optimisation; US patent filing initiated</li>
+      </ul>
+      <div class="timeline-tech">
+        <span class="tech-pill">Azure</span><span class="tech-pill">GNNs</span><span class="tech-pill">Transformers</span><span class="tech-pill">Kite Connect API</span><span class="tech-pill">NLP</span>
+      </div>
+    </div>
+
+    <div class="timeline-item fade-in">
+      <div class="timeline-meta">
+        <span>May 2022 – Nov 2022</span>
+        <span class="tag">Research Internship</span>
+      </div>
+      <div class="timeline-title">AI Research Intern</div>
+      <div class="timeline-org">Prof. Siddhartha Khare, IIT Roorkee — Civil Engineering Dept.</div>
+      <ul class="timeline-points">
+        <li>Engineered end-to-end AI software for autonomous driving perception under challenging Quebec, Canada weather conditions</li>
+        <li>Achieved 73.26% Precision, 72.84% Recall, and 73.47% mAP on object detection and decision-making</li>
+        <li>Published in IEEE Access (2024) — see Research section below</li>
+      </ul>
+      <div class="timeline-tech">
+        <span class="tech-pill">Object Detection</span><span class="tech-pill">Computer Vision</span><span class="tech-pill">Autonomous Driving</span><span class="tech-pill">Deep Learning</span>
+      </div>
+    </div>
+
+    <div class="timeline-item fade-in">
+      <div class="timeline-meta">
+        <span>Dec 2022 – May 2023</span>
+        <span class="tag">Internship</span>
+      </div>
+      <div class="timeline-title">Lead AI Developer</div>
+      <div class="timeline-org">Bhoomicam — Roorkee, India</div>
+      <ul class="timeline-points">
+        <li>Designed AI-powered software for early crop disease detection, minimising losses by ~25% and improving yields by 15% for farmers across India</li>
+      </ul>
+      <div class="timeline-tech">
+        <span class="tech-pill">Computer Vision</span><span class="tech-pill">Classification</span><span class="tech-pill">Edge Deployment</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════ PROJECTS ═══════════════════════════ -->
+<section id="projects">
+  <div class="section-label fade-in">Work</div>
+  <h2 class="section-title fade-in">Selected Projects</h2>
+  <div class="projects-grid">
+
+    <a href="#" class="project-card project-card-featured fade-in" onclick="return false;">
+      <div class="featured-badge">Featured</div>
+      <div class="project-num">01 / QUANTITATIVE FINANCE</div>
+      <div class="project-title">High-Frequency Trading Alpha Research Platform</div>
+      <div class="project-desc">
+        Production-grade HFT infrastructure built from the ground up. A C++ orderbook processing 500K+ operations per second with O(1) insert/cancel/modify via price-level maps and intrusive linked lists. Python bindings via pybind11 for strategy research. Alpha signals engineered from market microstructure features — order flow imbalance, bid-ask spread dynamics, and queue exhaustion signals.
+      </div>
+      <div class="project-highlight">Sharpe Ratio: 2.1 · 53% directional accuracy (CNN+LSTM)</div>
+      <div class="project-tags">
+        <span class="project-tag">C++</span>
+        <span class="project-tag">Python</span>
+        <span class="project-tag">pybind11</span>
+        <span class="project-tag">PyTorch</span>
+        <span class="project-tag">CMake</span>
+        <span class="project-tag">Market Microstructure</span>
+        <span class="project-tag">Backtesting</span>
+      </div>
+    </a>
+
+    <a href="#" class="project-card fade-in" onclick="return false;">
+      <div class="project-num">02 / OPTIONS ANALYTICS</div>
+      <div class="project-title">Black-Scholes Validator & Options Risk Dashboard</div>
+      <div class="project-desc">
+        A full-stack options analytics engine built on real options-chain data. IV solver using Newton-Raphson, full Greeks computation (Delta, Gamma, Theta, Vega, Rho), volatility smile analysis, put-call parity checks, and mispricing detection with MAE/RMSE metrics. Portfolio-level VaR/CVaR using Greeks aggregation.
+      </div>
+      <div class="project-highlight">Analyzed live mispricing to support real trading decisions</div>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">SciPy</span>
+        <span class="project-tag">Pandas</span>
+        <span class="project-tag">Vol Surface</span>
+        <span class="project-tag">VaR/CVaR</span>
+      </div>
+    </a>
+
+    <a href="#" class="project-card fade-in" onclick="return false;">
+      <div class="project-num">03 / GRAPH NEURAL NETWORKS</div>
+      <div class="project-title">Traffic Prediction Using A3TGCN</div>
+      <div class="project-desc">
+        Spatio-temporal traffic flow forecasting using the Attention Temporal Graph Convolutional Network. Validated on PeMSD4 — 39,000+ detectors across metropolitan California, 10,181 training examples over 35 days. Captures both spatial road-network topology and temporal periodic patterns.
+      </div>
+      <div class="project-highlight">IIT Roorkee ArIES society project</div>
+      <div class="project-tags">
+        <span class="project-tag">PyTorch Geometric</span>
+        <span class="project-tag">GNN</span>
+        <span class="project-tag">Attention</span>
+        <span class="project-tag">Time Series</span>
+        <span class="project-tag">PeMSD4</span>
+      </div>
+    </a>
+
+    <a href="https://ieeexplore.ieee.org/document/10399478" target="_blank" class="project-card fade-in">
+      <div class="project-num">04 / AUTONOMOUS DRIVING · IEEE PUBLISHED</div>
+      <div class="project-title">All-Weather Autonomous Driving Perception System</div>
+      <div class="project-desc">
+        End-to-end AI perception system for autonomous vehicles under challenging Quebec weather — snow, fog, rain. Object detection and decision-making pipeline achieving state-of-the-art results. Published as first-authored contribution in IEEE Access, 2024.
+      </div>
+      <div class="project-highlight">73.47% mAP · IEEE Access Publication</div>
+      <div class="project-tags">
+        <span class="project-tag">Object Detection</span>
+        <span class="project-tag">IEEE Published</span>
+        <span class="project-tag">Adverse Weather</span>
+        <span class="project-tag">Deep Learning</span>
+      </div>
+    </a>
+
+    <a href="#" class="project-card fade-in" onclick="return false;">
+      <div class="project-num">05 / BIOINFORMATICS · iGEM GOLD MEDAL</div>
+      <div class="project-title">CRISPRLY — AI-Powered Gene Editing Optimisation</div>
+      <div class="project-desc">
+        Dry Lab AI/ML researcher on IIT Roorkee's iGEM 2022 team. Used DeepCpf1 to predict Indel frequencies in 34-nucleotide DNA sequences, analysing 20,826 sequences to improve gene editing outcomes by 15%. The project won a Gold Medal at iGEM Grand Jamboree in Paris.
+      </div>
+      <div class="project-highlight">Gold Medal — iGEM Paris 2022</div>
+      <div class="project-tags">
+        <span class="project-tag">DeepCpf1</span>
+        <span class="project-tag">Bioinformatics</span>
+        <span class="project-tag">CRISPR</span>
+        <span class="project-tag">Deep Learning</span>
+        <span class="project-tag">iGEM</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════ ACHIEVEMENTS ═══════════════════════════ -->
+<section id="achievements">
+  <div class="section-label fade-in">Recognition</div>
+  <h2 class="section-title fade-in">Awards & Achievements</h2>
+  <div class="achievements-row">
+    <div class="achv-card fade-in">
+      <span class="achv-icon">🥇</span>
+      <div class="achv-title">iGEM Grand Jamboree Gold Medal</div>
+      <div class="achv-sub">World's largest synthetic biology competition — Paris, 2022. Represented IIT Roorkee as AI/ML researcher.</div>
+    </div>
+    <div class="achv-card fade-in">
+      <span class="achv-icon">🥈</span>
+      <div class="achv-title">Inter IIT Sports Meet — Silver</div>
+      <div class="achv-sub">Silver Medalist in High Jump at the Inter IIT Sports Meet 2023. Served as Joint Secretary (Sports), Hamrock Society.</div>
+    </div>
+    <div class="achv-card fade-in">
+      <span class="achv-icon">🔢</span>
+      <div class="achv-title">IYMC Pre-Finals 2022</div>
+      <div class="achv-sub">Qualified for pre-final round of the International Youth Math Challenge — among 12,500+ participants from 98 countries.</div>
+    </div>
+    <div class="achv-card fade-in">
+      <span class="achv-icon">📰</span>
+      <div class="achv-title">IEEE Access Peer Reviewer</div>
+      <div class="achv-sub">Voluntary manuscript reviewer for IEEE Access — evaluating cutting-edge AI and technology research since April 2025.</div>
+    </div>
+    <div class="achv-card fade-in">
+      <span class="achv-icon">⚡</span>
+      <div class="achv-title">Competitive Programmer</div>
+      <div class="achv-sub">Active on Codeforces, CodeChef, and AtCoder — continuously sharpening DSA skills against top global coders.</div>
+    </div>
+    <div class="achv-card fade-in">
+      <span class="achv-icon">🔬</span>
+      <div class="achv-title">IEEE Published Researcher</div>
+      <div class="achv-sub">Co-authored paper in IEEE Access 2024 on deep learning for autonomous driving perception in adverse weather.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ PUBLICATION ═══════════════════════════ -->
+<section id="publication">
+  <div class="section-label fade-in">Research</div>
+  <h2 class="section-title fade-in">Publication</h2>
+  <div class="pub-card fade-in">
+    <div class="pub-icon">📄</div>
+    <div>
+      <div class="pub-label">IEEE Access · 2024</div>
+      <div class="pub-title">Deep Learning-Based Object Detection and Classification for Autonomous Vehicles in Different Weather Scenarios of Quebec, Canada</div>
+      <div class="pub-authors">
+        Teena Sharma, Abdellah Chehri, Deeksha Arya, Issouf Fofana, <strong>Shubham Jadhav</strong>,
+        Siddhartha Khare, Benoit Debaque, Nicolas Duclos, Kottakkarm Sooppy Nisar
+      </div>
+      <div class="pub-journal">IEEE · IEEE Access · DOI: 10.1109/ACCESS.2024....</div>
+      <a href="https://ieeexplore.ieee.org/document/10399478" target="_blank" class="pub-link">
+        Read on IEEE Xplore →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ CONTACT ═══════════════════════════ -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-label">Contact</div>
+    <h2 class="contact-headline fade-in">Let's build<br><em>something real.</em></h2>
+    <p class="contact-sub fade-in">
+      Open to quant research roles, AI engineering opportunities, and research collaborations.
+      Based in Pune — reachable anywhere.
+    </p>
+    <div class="contact-links fade-in">
+      <a href="mailto:jadhav_sg@es.iitr.ac.in" class="contact-link">✉ Email</a>
+      <a href="https://www.linkedin.com/in/shubhamiitr25" target="_blank" class="contact-link">in LinkedIn</a>
+      <a href="https://github.com/20SHUBHAM" target="_blank" class="contact-link">⌥ GitHub</a>
+      <a href="https://20shubham.github.io/" target="_blank" class="contact-link">◎ Portfolio</a>
+      <a href="https://medium.com/@Shubham_Jadhav" target="_blank" class="contact-link">✍ Blog</a>
+    </div>
+    <div class="contact-email fade-in">jadhav_sg@es.iitr.ac.in · +91 8767994265</div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <span>© 2025 Shubham Jadhav · IIT Roorkee</span>
+  <span>Quant · AI · Research · <a href="https://ieeexplore.ieee.org/document/10399478" target="_blank">IEEE Published</a></span>
+</footer>
+
+<script>
+  /* ─── Custom Cursor ─── */
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animCursor() {
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(animCursor);
+  }
+  animCursor();
+  document.querySelectorAll('a, button, .project-card, .achv-card, .skill-chip').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+  });
+
+  /* ─── Nav scroll ─── */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  /* ─── Fade-in on scroll ─── */
+  const fades = document.querySelectorAll('.fade-in');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  fades.forEach(el => io.observe(el));
+
+  /* ─── Stagger sibling fade-ins ─── */
+  document.querySelectorAll('.projects-grid, .achievements-row, .about-grid, .skills-grid').forEach(grid => {
+    const children = grid.querySelectorAll('.fade-in');
+    children.forEach((child, i) => {
+      child.style.transitionDelay = (i * 0.08) + 's';
+    });
+  });
+</script>
+</body>
+</html>
